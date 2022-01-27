@@ -1,7 +1,8 @@
-This repository is existing for publishing files and receiving Issues.
-Therefore any Pull requests will be canceled.
-Publishing based on making Branches, Forks, or Clones is deemed as republishing.
-Publishing files with no modifying as a result can violate their licenses. Don't do these.
+This repository is existing for publishing files and receiving Issues.<br>
+Therefore any Pull requests will be canceled.<br>
+Publishing based on making Branches, Forks, or Clones is deemed as republishing.<br>
+
+Publishing files with no modifying as a result can violate their licenses. Don't do these.<br>
 
 ---
 All files except README.md and README-en.md in this repository are
