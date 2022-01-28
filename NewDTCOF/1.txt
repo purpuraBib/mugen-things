@@ -22,9 +22,9 @@ PUSHAD
 POPAD
 
 ;復帰処理
-MOV ECX,[EDI-0xC]           ;オーバーフローステにある第一パラメータを参照
+MOV ECX,[EDI-0xC]           ;実行ステにある第一パラメータを参照
 MOV DWORD PTR [ESP-0x4],ECX ;補正
-MOV ECX,[EDI-0x8]           ;オーバーフローステにある第二パラメータを参照
+MOV ECX,[EDI-0x8]           ;実行ステにある第二パラメータを参照
 MOV EAX,[ESP+0x10]
 MOV DWORD PTR [EAX-0xC],ECX ;補正
 SUB ESP,0x428               ;帳尻合わせ
