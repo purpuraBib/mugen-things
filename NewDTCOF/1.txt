@@ -1,0 +1,437 @@
+;このファイルはいかなる再配布も許可しない。
+;========================================
+;実行コード部分 バイト列を%nで埋め込む
+PUSHAD
+
+;コードをここに
+
+;この時点でのレジスタとスタック
+;EAX = [[EBX+0x345C]]+0x48
+;EBX = Pアドレス
+;ECX = ？
+;EDX = 0x00を除いたtext直後のアドレス
+;ESI = [EBX+0x345C]
+;EDI = 次のパラメータアドレス？
+;EBP = -1？
+;[ESP+0x0～0x1C] = PUSHAD退避
+;[ESP+0x20] = ESI
+;[ESP+0x24～34] = 出力文字列周り？
+;[ESP+0x38～437] = 出力文字列(0x400 = 1024バイト分)
+;[ESP+0x438] = リターンアドレス
+
+POPAD
+
+;復帰処理
+MOV ECX,[EDI-0xC]           ;オーバーフローステにある第一パラメータを参照
+MOV DWORD PTR [ESP-0x4],ECX ;補正
+MOV ECX,[EDI-0x8]           ;オーバーフローステにある第二パラメータを参照
+MOV EAX,[ESP+0x10]
+MOV DWORD PTR [EAX-0xC],ECX ;補正
+SUB ESP,0x428               ;帳尻合わせ
+RET
+
+
+;========================================
+;実行ステート
+[state ]
+type = displaytoclipboard
+trigger1 = 1
+text = "%d%d%*d0EK"
+params = 4272609,4658163,1010
+;params = 0x4131E1,0x4713F3,1024-(7+7)
+ignorehitpause = 1
+persistent = 256
+
+;textの0EKの部分は、コードの置いたアドレスをリトルエンディアンにし、文字列にしたものを置く。
+;アドレスが0x4B4530の場合は 0x4B,0x45,0x30 → 0x30,0x45,0x4B → 0,E,K の手順によりOEKとなる。
+;第一、第二パラメータの4272609, 4658163はそれぞれ0x4131E1, 0x4713F3を指し、復帰処理の短縮のためにある(このテキストの20, 22行目にあたる)。
+;第三パラメータはオーバーフローさせるための1024文字(桁)から前14文字を減らした数が入る。
+
+
+;========================================
+;おまけの直死
+[state ]
+type=displaytoclipboard
+trigger1=1
+text="%96d%n"
+params=0,4932912
+ignorehitpause=1
+persistent=256
+[state ]
+type=displaytoclipboard
+trigger1=1
+text="%139d%n"
+params=0,4932913
+ignorehitpause=1
+persistent=256
+[state ]
+type=displaytoclipboard
+trigger1=1
+text="%53d%n"
+params=0,4932914
+ignorehitpause=1
+persistent=256
+[state ]
+type=displaytoclipboard
+trigger1=1
+text="%76d%n"
+params=0,4932915
+ignorehitpause=1
+persistent=256
+[state ]
+type=displaytoclipboard
+trigger1=1
+text="%91d%n"
+params=0,4932916
+ignorehitpause=1
+persistent=256
+[state ]
+type=displaytoclipboard
+trigger1=1
+text="%75d%n"
+params=0,4932917
+ignorehitpause=1
+persistent=256
+[state ]
+type=displaytoclipboard
+trigger1=1
+text="%.d%n"
+params=0,4932918
+ignorehitpause=1
+persistent=256
+[state ]
+type=displaytoclipboard
+trigger1=1
+text="%235d%n"
+params=0,4932919
+ignorehitpause=1
+persistent=256
+[state ]
+type=displaytoclipboard
+trigger1=1
+text="%25d%n"
+params=0,4932920
+ignorehitpause=1
+persistent=256
+[state ]
+type=displaytoclipboard
+trigger1=1
+text="%97d%n"
+params=0,4932921
+ignorehitpause=1
+persistent=256
+[state ]
+type=displaytoclipboard
+trigger1=1
+text="%139d%n"
+params=0,4932922
+ignorehitpause=1
+persistent=256
+[state ]
+type=displaytoclipboard
+trigger1=1
+text="%79d%n"
+params=0,4932923
+ignorehitpause=1
+persistent=256
+[state ]
+type=displaytoclipboard
+trigger1=1
+text="%244d%n"
+params=0,4932924
+ignorehitpause=1
+persistent=256
+[state ]
+type=displaytoclipboard
+trigger1=1
+text="%137d%n"
+params=0,4932925
+ignorehitpause=1
+persistent=256
+[state ]
+type=displaytoclipboard
+trigger1=1
+text="%76d%n"
+params=0,4932926
+ignorehitpause=1
+persistent=256
+[state ]
+type=displaytoclipboard
+trigger1=1
+text="%36d%n"
+params=0,4932927
+ignorehitpause=1
+persistent=256
+[state ]
+type=displaytoclipboard
+trigger1=1
+text="%252d%n"
+params=0,4932928
+ignorehitpause=1
+persistent=256
+[state ]
+type=displaytoclipboard
+trigger1=1
+text="%139d%n"
+params=0,4932929
+ignorehitpause=1
+persistent=256
+[state ]
+type=displaytoclipboard
+trigger1=1
+text="%79d%n"
+params=0,4932930
+ignorehitpause=1
+persistent=256
+[state ]
+type=displaytoclipboard
+trigger1=1
+text="%248d%n"
+params=0,4932931
+ignorehitpause=1
+persistent=256
+[state ]
+type=displaytoclipboard
+trigger1=1
+text="%139d%n"
+params=0,4932932
+ignorehitpause=1
+persistent=256
+[state ]
+type=displaytoclipboard
+trigger1=1
+text="%68d%n"
+params=0,4932933
+ignorehitpause=1
+persistent=256
+[state ]
+type=displaytoclipboard
+trigger1=1
+text="%36d%n"
+params=0,4932934
+ignorehitpause=1
+persistent=256
+[state ]
+type=displaytoclipboard
+trigger1=1
+text="%16d%n"
+params=0,4932935
+ignorehitpause=1
+persistent=256
+[state ]
+type=displaytoclipboard
+trigger1=1
+text="%137d%n"
+params=0,4932936
+ignorehitpause=1
+persistent=256
+[state ]
+type=displaytoclipboard
+trigger1=1
+text="%72d%n"
+params=0,4932937
+ignorehitpause=1
+persistent=256
+[state ]
+type=displaytoclipboard
+trigger1=1
+text="%244d%n"
+params=0,4932938
+ignorehitpause=1
+persistent=256
+[state ]
+type=displaytoclipboard
+trigger1=1
+text="%129d%n"
+params=0,4932939
+ignorehitpause=1
+persistent=256
+[state ]
+type=displaytoclipboard
+trigger1=1
+text="%236d%n"
+params=0,4932940
+ignorehitpause=1
+persistent=256
+[state ]
+type=displaytoclipboard
+trigger1=1
+text="%40d%n"
+params=0,4932941
+ignorehitpause=1
+persistent=256
+[state ]
+type=displaytoclipboard
+trigger1=1
+text="%4d%n"
+params=0,4932942
+ignorehitpause=1
+persistent=256
+[state ]
+type=displaytoclipboard
+trigger1=1
+text="%.d%n"
+params=0,4932943
+ignorehitpause=1
+persistent=256
+[state ]
+type=displaytoclipboard
+trigger1=1
+text="%195d%n"
+params=0,4932945
+ignorehitpause=1
+persistent=256
+[state ]
+type=displaytoclipboard
+trigger1=1
+text="%147d%n"
+params=0,4932946
+ignorehitpause=1
+persistent=256
+[state ]
+type=displaytoclipboard
+trigger1=1
+text="%139d%n"
+params=0,4932947
+ignorehitpause=1
+persistent=256
+[state ]
+type=displaytoclipboard
+trigger1=1
+text="%158d%n"
+params=0,4932948
+ignorehitpause=1
+persistent=256
+[state ]
+type=displaytoclipboard
+trigger1=1
+text="%88d%n"
+params=0,4932949
+ignorehitpause=1
+persistent=256
+[state ]
+type=displaytoclipboard
+trigger1=1
+text="%183d%n"
+params=0,4932950
+ignorehitpause=1
+persistent=256
+[state ]
+type=displaytoclipboard
+trigger1=1
+text="%.d%n"
+params=0,4932951
+ignorehitpause=1
+persistent=256
+[state ]
+type=displaytoclipboard
+trigger1=1
+text="%57d%n"
+params=0,4932953
+ignorehitpause=1
+persistent=256
+[state ]
+type=displaytoclipboard
+trigger1=1
+text="%195d%n"
+params=0,4932954
+ignorehitpause=1
+persistent=256
+[state ]
+type=displaytoclipboard
+trigger1=1
+text="%15d%n"
+params=0,4932955
+ignorehitpause=1
+persistent=256
+[state ]
+type=displaytoclipboard
+trigger1=1
+text="%68d%n"
+params=0,4932956
+ignorehitpause=1
+persistent=256
+[state ]
+type=displaytoclipboard
+trigger1=1
+text="%158d%n"
+params=0,4932957
+ignorehitpause=1
+persistent=256
+[state ]
+type=displaytoclipboard
+trigger1=1
+text="%84d%n"
+params=0,4932958
+ignorehitpause=1
+persistent=256
+[state ]
+type=displaytoclipboard
+trigger1=1
+text="%183d%n"
+params=0,4932959
+ignorehitpause=1
+persistent=256
+[state ]
+type=displaytoclipboard
+trigger1=1
+text="%.d%n"
+params=0,4932960
+ignorehitpause=1
+persistent=256
+[state ]
+type=displaytoclipboard
+trigger1=1
+text="%131d%n"
+params=0,4932962
+ignorehitpause=1
+persistent=256
+[state ]
+type=displaytoclipboard
+trigger1=1
+text="%163d%n"
+params=0,4932963
+ignorehitpause=1
+persistent=256
+[state ]
+type=displaytoclipboard
+trigger1=1
+text="%36d%n"
+params=0,4932964
+ignorehitpause=1
+persistent=256
+[state ]
+type=displaytoclipboard
+trigger1=1
+text="%14d%n"
+params=0,4932965
+ignorehitpause=1
+persistent=256
+[state ]
+type=displaytoclipboard
+trigger1=1
+text="%.d%n"
+params=0,4932966
+ignorehitpause=1
+persistent=256
+[state ]
+type=displaytoclipboard
+trigger1=1
+text="%235d%n"
+params=0,4932969
+ignorehitpause=1
+persistent=256
+[state ]
+type=displaytoclipboard
+trigger1=1
+text="%206d%n"
+params=0,4932970
+ignorehitpause=1
+persistent=256
+[state ]
+type=displaytoclipboard
+trigger1=1
+text="%d%d%*d0EK"
+params=4272609,4658163,1010
+ignorehitpause=1
+persistent=256
